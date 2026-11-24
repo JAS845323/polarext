@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>PolarExt — Zero-Backend Chrome Extension + Polar.sh Monetization Starter Kit</title>
+    <meta
+      name="description"
+      content="Lemon Squeezy is sunsetting. Monetize your Manifest V3 Chrome Extension in 15 minutes with Polar.sh license keys — zero backend, zero monthly server cost."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-inner">
+        <a href="./index.html" class="brand">
+          <span class="brand-mark" aria-hidden="true">✦</span>
+          <span>PolarExt</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#simulator">Live Demo</a>
+          <a href="#features">Architecture</a>
+          <a href="#compare">Why Polar</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq-heading">FAQ</a>
+          <a href="./privacy.html">Privacy</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <span class="eyebrow">Manifest V3 + React 19 + TypeScript + Polar.sh</span>
+          <h1>
+            Lemon Squeezy is sunsetting.<br />
+            Monetize your Chrome Extension in 15 minutes with Polar.sh.
+          </h1>
+          <p class="hero-sub">
+            Skip building auth servers, webhook databases, and VAT headaches. PolarExt ships a
+            complete MV3 SEO &amp; Link Inspector extension wired directly to Polar's zero-backend
+            Customer Portal license APIs, 72-hour offline grace cache, turnkey rebranding CLI, and
+            Chrome Web Store asset + ZIP pipeline.
+          </p>
+          <div class="hero-actions">
+            <a href="#pricing" class="btn btn-primary" data-checkout-cta="early">
+              Get Early Bird Access — $19
+            </a>
+            <a href="#simulator" class="btn btn-secondary">Try Interactive Simulator</a>
+          </div>
+          <p class="hero-meta">
+            One-time purchase · Instant GitHub Private Repo invite + release ZIP · Commercial rights included
+          </p>
+        </div>
+      </section>
+
+      <section id="simulator" class="section section-alt">
+        <div class="container">
+          <h2>Try the Extension Flow in Your Browser</h2>
+          <p class="section-lead">
+            Scan a sample page, hit the Pro paywall, activate the demo Polar key
+            (<code>POLAR-DEMO-PRO-2026</code>), and watch live Polar API payloads + 72h offline grace.
+          </p>
+
+          <div class="sim-shell">
+            <div class="sim-toolbar">
+              <div class="sim-surface-switch" role="group" aria-label="Simulator surface view">
+                <button type="button" class="btn btn-sm sim-view-btn" data-sim-view="sidepanel" aria-pressed="true">
+                  Side Panel
+                </button>
+                <button type="button" class="btn btn-sm sim-view-btn" data-sim-view="popup" aria-pressed="false">
+                  Toolbar Popup
+                </button>
+              </div>
+              <div class="sim-controls">
+                <button type="button" class="btn btn-sm btn-primary" id="sim-scan-btn">
+                  Scan Sample Page
+                </button>
+                <button type="button" class="btn btn-sm" id="sim-offline-btn" aria-pressed="false">
+                  Simulate Offline (72h Grace)
+                </button>
+                <button type="button" class="btn btn-sm" id="sim-reset-btn">
+                  Reset Demo
+                </button>
+              </div>
+            </div>
+
+            <div class="sim-grid">
+              <div class="sim-device" aria-live="polite">
+                <div class="sim-device-head">
+                  <strong id="sim-surface-title">PolarExt Side Panel</strong>
+                  <div class="sim-badges">
+                    <span class="sim-pill score" id="sim-score-pill">Not scanned</span>
+                    <span class="sim-pill" id="sim-tier-pill">Free Tier</span>
+                  </div>
+                </div>
+
+                <div id="sim-popup-view" hidden>
+                  <p class="sim-muted">Quick summary for <code>https://launch.example.dev</code></p>
+                  <div class="sim-stats">
+                    <div><strong id="sim-pop-links">—</strong><span>Links</span></div>
+                    <div><strong id="sim-pop-ext">—</strong><span>External</span></div>
+                    <div><strong id="sim-pop-issues">—</strong><span>Findings</span></div>
+                  </div>
+                  <button type="button" class="btn btn-primary btn-full" id="sim-open-panel-btn">
+                    Open Side Panel (Alt+Shift+P)
+                  </button>
+                </div>
+
+                <div id="sim-sidepanel-view">
+                  <div class="sim-subtabs" role="group" aria-label="Simulator side panel tabs">
+                    <button type="button" class="sim-subtab" data-sim-tab="inspector" aria-pressed="true">
+                      Inspector
+                    </button>
+                    <button type="button" class="sim-subtab" data-sim-tab="pro" aria-pressed="false">
+                      Pro Audit
+                    </button>
+                    <button type="button" class="sim-subtab" data-sim-tab="license" aria-pressed="false">
+                      License
+                    </button>
+                  </div>
+
+                  <div id="sim-panel-inspector">
+                    <p class="sim-muted" id="sim-scan-status">
+                      Click "Scan Sample Page" above to inspect SEO metadata and 14 links.
+                    </p>
+                    <div id="sim-inspector-results" hidden>
+                      <div class="sim-stats">
+                        <div><strong>14</strong><span>Unique</span></div>
+                        <div><strong>6</strong><span>External</span></div>
+                        <div><strong>4</strong><span>Findings</span></div>
+                      </div>
+                      <ul class="sim-list">
+                        <li><code>Title (48 chars)</code> · <code>Description (missing)</code></li>
+                        <li><code>Canonical: Yes</code> · <code>H1 Count: 1</code></li>
+                        <li><code>[external] Polar.sh Docs</code> — https://polar.sh/docs</li>
+                        <li><code>[issue] Partner Blog</code> — missing rel="noopener"</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div id="sim-panel-pro" hidden>
+                    <div id="sim-pro-locked" class="sim-gate">
+                      <strong>Unlock SEO Fix Checklist &amp; CSV Export</strong>
+                      <p class="sim-muted">
+                        Free users see basic link counts. Pro unlocks prioritized fixes, page
+                        highlighting, and CSV / JSON / Markdown export.
+                      </p>
+                      <button type="button" class="btn btn-sm btn-primary" id="sim-goto-license-btn">
+                        Enter License Key
+                      </button>
+                    </div>
+                    <div id="sim-pro-unlocked" hidden>
+                      <div class="sim-issue err">
+                        <strong>[ERROR] 1 external target="_blank" missing noopener</strong>
+                        <span>Add rel="noopener noreferrer" to protect opener window.</span>
+                      </div>
+                      <div class="sim-issue warn">
+                        <strong>[WARNING] Missing meta description</strong>
+                        <span>Add 120–160 chars description to raise score from 74 to 86.</span>
+                      </div>
+                      <pre class="code-box sim-csv-preview"><code>kind,host,text,nofollow,missing_noopener
+"external","polar.sh","Polar Docs",false,false
+"external","partner.io","Partner Blog",true,true</code></pre>
+                    </div>
+                  </div>
+
+                  <div id="sim-panel-license" hidden>
+                    <label for="sim-key-input" class="sim-label">Polar.sh License Key</label>
+                    <div class="sim-key-row">
+                      <input
+                        id="sim-key-input"
+                        type="text"
+                        placeholder="POLAR-DEMO-PRO-2026"
+                        autocomplete="off"
+                      />
+                      <button type="button" class="btn btn-sm" id="sim-fill-demo-btn">
+                        Fill Demo
+                      </button>
+                    </div>
+                    <div class="sim-controls" style="margin-top: 10px;">
+                      <button type="button" class="btn btn-sm btn-primary" id="sim-activate-btn">
+                        Activate Key
+                      </button>
+                      <button type="button" class="btn btn-sm" id="sim-deactivate-btn" hidden>
+                        Deactivate
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sim-log">
+                <div class="sim-device-head">
+                  <strong>Polar.sh Customer Portal Log</strong>
+                  <span class="sim-muted">Zero-backend client calls</span>
+                </div>
+                <pre class="code-box sim-log-box"><code id="sim-api-log">// Waiting for action...
+// Click "Scan Sample Page" or open the License tab to test Polar.sh activation.</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="section">
+        <div class="container">
+          <h2>Inside the Starter Kit</h2>
+          <p class="section-lead">
+            Every surface and script a real paid Chrome Extension needs — pre-tested and wired end-to-end.
+          </p>
+
+          <div class="tabs-shell">
+            <div class="preview-tabs" role="tablist" aria-label="Starter kit modules">
+              <button type="button" id="feat-tab-license" role="tab" class="preview-tab" aria-selected="true">
+                Polar License Engine
+              </button>
+              <button type="button" id="feat-tab-seo" role="tab" class="preview-tab" aria-selected="false">
+                SEO &amp; Link Auditor
+              </button>
+              <button type="button" id="feat-tab-surfaces" role="tab" class="preview-tab" aria-selected="false">
+                Popup, Panel &amp; Options
+              </button>
+              <button type="button" id="feat-tab-dx" role="tab" class="preview-tab" aria-selected="false">
+                Setup CLI &amp; Store Assets
+              </button>
+            </div>
+
+            <div class="preview-panels">
+              <div role="tabpanel" aria-labelledby="feat-tab-license" tabindex="0">
+                <div class="preview-panel">
+                  <div class="preview-copy">
+                    <h3>Zero-Backend Polar.sh Customer Portal Client</h3>
+                    <p>
+                      Calls Polar's public <code>/v1/customer-portal/license-keys/activate</code>,
+                      <code>/validate</code>, and <code>/deactivate</code> endpoints directly from the
+                      extension — no secret API keys leaked, seat limits &amp; metered usage built in,
+                      and a 72-hour offline grace window.
+                    </p>
+                    <ul>
+                      <li>Supports Production &amp; Sandbox Polar APIs via <code>.env</code></li>
+                      <li>Metered usage support via <code>consumeLicenseUsage()</code></li>
+                      <li>Built-in demo keys (<code>POLAR-DEMO-PRO-2026</code>) for instant QA</li>
+                    </ul>
+                  </div>
+                  <pre class="code-box"><code>POST https://api.polar.sh/v1/customer-portal/license-keys/validate
+{
+  "key": "POLAR-XXXX-XXXX-XXXX",
+  "organization_id": "your-public-org-uuid",
+  "activation_id": "act-uuid",
+  "increment_usage": 1
+}</code></pre>
+                </div>
+              </div>
+
+              <div role="tabpanel" aria-labelledby="feat-tab-seo" hidden="until-found">
+                <div class="preview-panel">
+                  <div class="preview-copy">
+                    <h3>Standalone SEO &amp; Link Security Auditor</h3>
+                    <p>
+                      Ship it immediately as your own niche developer tool or replace the module with
+                      your custom product logic. Evaluates metadata, anchor hygiene, and security flags
+                      locally on the active tab.
+                    </p>
+                    <ul>
+                      <li>0–100 SEO score (Title, Description, Canonical, H1, Open Graph)</li>
+                      <li>Flags missing <code>rel="noopener"</code> &amp; mixed <code>http://</code> links</li>
+                      <li>Local scan history (10 pages) + CSV / JSON / Markdown export</li>
+                    </ul>
+                  </div>
+                  <pre class="code-box"><code>const audit = evaluatePageAudit(pageUrl, meta, links, duplicateCount);
+// { score: 86, issues: [...], nofollowCount: 3, missingNoopenerCount: 1 }</code></pre>
+                </div>
+              </div>
+
+              <div role="tabpanel" aria-labelledby="feat-tab-surfaces" hidden="until-found">
+                <div class="preview-panel">
+                  <div class="preview-copy">
+                    <h3>Popup, 4-Tab Side Panel &amp; Synced Options</h3>
+                    <p>
+                      Three complete React 19 surfaces styled with native <code>light-dark()</code>
+                      tokens, a 3-state appearance selector (System / Light / Dark), and accessible
+                      <code>:user-invalid</code> form validation — zero inline scripts, zero CSP errors.
+                    </p>
+                    <ul>
+                      <li>Global keyboard shortcut <code>Alt+Shift+P</code> opens Side Panel</li>
+                      <li>Ephemeral-safe Service Worker with daily <code>chrome.alarms</code></li>
+                      <li><code>requestAnimationFrame</code> batched on-page highlighting + Shadow DOM toast</li>
+                    </ul>
+                  </div>
+                  <pre class="code-box"><code>&lt;ProGate
+  isPro={isPro}
+  featureName="SEO Fix Checklist &amp; Multi-Format Export"
+  description="Unlock checklists, highlighting, and CSV/JSON/MD."
+&gt;
+  &lt;ProAuditWorkspace /&gt;
+&lt;/ProGate&gt;</code></pre>
+                </div>
+              </div>
+
+              <div role="tabpanel" aria-labelledby="feat-tab-dx" hidden="until-found">
+                <div class="preview-panel">
+                  <div class="preview-copy">
+                    <h3>Turnkey Rebranding CLI, Watch Mode &amp; CWS Assets</h3>
+                    <p>
+                      Go from clone to customized, store-ready release ZIP in one command. Includes
+                      pure Node.js PNG generators for extension icons AND Chrome Web Store screenshots
+                      plus a Lemon Squeezy migration guide.
+                    </p>
+                    <ul>
+                      <li><code>npm run setup</code> updates manifest, <code>.env</code>, CWS doc &amp; landing URL</li>
+                      <li><code>npm run dev</code> watches files and rebuilds MV3 bundles on save</li>
+                      <li>Generates <code>1280x800</code> screenshots + <code>440x280</code> promo tile + CI workflow</li>
+                    </ul>
+                  </div>
+                  <pre class="code-box"><code>$ npm run verify
+✓ 4 PNG icons (16, 32, 48, 128)
+✓ 3 Chrome Web Store assets (1280x800 x2, 440x280)
+✓ TypeScript strict check + Vitest suite passed
+✓ Packaged release/polarext-v1.0.0.zip</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="compare" class="section section-alt">
+        <div class="container">
+          <h2>Before vs. After PolarExt</h2>
+          <p class="section-lead">
+            Save 15–25 hours of Manifest V3 plumbing, CSP debugging, and store rejection loops.
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Area</th>
+                  <th>Building From Scratch</th>
+                  <th>With PolarExt Starter Kit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Billing &amp; Global VAT</td>
+                  <td>Build Stripe webhooks + database + EU/US tax compliance</td>
+                  <td>Polar.sh acts as Merchant of Record with public license key APIs</td>
+                </tr>
+                <tr>
+                  <td>MV3 Service Worker State</td>
+                  <td>Global variables wiped every 30s of inactivity</td>
+                  <td>Zero global state; typed chrome.storage + daily chrome.alarms revalidation</td>
+                </tr>
+                <tr>
+                  <td>Side Panel Permissions</td>
+                  <td>Subtle activeTab failures from side panel buttons</td>
+                  <td>Correct tabs + host_permissions + Alt+Shift+P, Popup &amp; Context Menu triggers</td>
+                </tr>
+                <tr>
+                  <td>Dark Mode &amp; Accessibility</td>
+                  <td>Flash of white theme &amp; premature validation red borders</td>
+                  <td>color-scheme light dark + 3-state override + :user-invalid ARIA sync</td>
+                </tr>
+                <tr>
+                  <td>Chrome Web Store Prep</td>
+                  <td>Blank forms, missing screenshots, .env leaked into ZIP</td>
+                  <td>PNG icon + 1280x800 asset generators, validated ZIP &amp; CHROMEWEBSTORE.md</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" class="section">
+        <div class="container">
+          <h2>Simple, One-Time Pricing</h2>
+          <p class="section-lead">
+            Pay once, build unlimited personal or commercial Chrome Extensions.
+          </p>
+
+          <div class="pricing-grid">
+            <article class="price-card featured">
+              <span class="pill">First 20 Buyers</span>
+              <h3>Early Bird Kit</h3>
+              <p class="price">$19 <span class="price-note">USD one-time</span></p>
+              <ul>
+                <li>Full MV3 + React 19 + TypeScript + SEO Auditor source code</li>
+                <li>Zero-backend Polar.sh client (seats, metered usage &amp; 72h grace)</li>
+                <li><code>npm run setup</code> wizard, <code>npm run dev</code> watcher &amp; Vitest suite</li>
+                <li>PNG icon + 1280x800 CWS screenshot generators &amp; ZIP packager</li>
+                <li>Instant GitHub Private Repo invite + ZIP download</li>
+              </ul>
+              <a href="https://polar.sh" class="btn btn-primary btn-full" data-checkout-cta="early">
+                Buy Early Bird — $19
+              </a>
+            </article>
+
+            <article class="price-card">
+              <span class="pill">Standard License</span>
+              <h3>Pro Starter Kit</h3>
+              <p class="price">$29 <span class="price-note">USD one-time</span></p>
+              <ul>
+                <li>Everything in Early Bird Kit</li>
+                <li>Future MV3 &amp; Polar.sh API compatibility updates</li>
+                <li>Landing page + live simulator + Privacy Policy static template</li>
+                <li>Unlimited commercial extensions for you or your studio</li>
+                <li>Priority GitHub Issues support</li>
+              </ul>
+              <a href="https://polar.sh" class="btn btn-secondary btn-full" data-checkout-cta="standard">
+                Get Standard Kit — $29
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt">
+        <div class="container narrow">
+          <section class="accordion" id="faq-accordion" aria-labelledby="faq-heading">
+            <div class="faq-header">
+              <h2 id="faq-heading">Frequently Asked Questions</h2>
+              <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                commandfor="faq-accordion"
+                command="--toggle-all"
+                aria-expanded="false"
+              >
+                <span class="expand">Expand all</span>
+                <span class="collapse">Collapse all</span>
+              </button>
+            </div>
+
+            <details>
+              <summary>Do I need to run a backend server or database?</summary>
+              <div class="faq-body">
+                <p>
+                  No. Polar.sh exposes public Customer Portal endpoints for activating, validating,
+                  and deactivating license keys using only your public Organization ID. Your
+                  extension talks directly to Polar.sh without exposing secret API tokens.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>Why Polar.sh instead of Lemon Squeezy or Stripe?</summary>
+              <div class="faq-body">
+                <p>
+                  Lemon Squeezy is sunsetting transaction and renewal processing, while raw Stripe
+                  leaves global VAT/sales tax compliance on your shoulders and isn't available in
+                  many regions. Polar.sh acts as Merchant of Record, natively issues license keys,
+                  auto-invites buyers to your private GitHub repository, and pays out globally via
+                  Stripe Connect Express (including Taiwan).
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>What happens when a customer loses internet connection?</summary>
+              <div class="faq-body">
+                <p>
+                  PolarExt stores the latest verified state in chrome.storage.local and grants a
+                  configurable 72-hour offline grace period if Polar.sh is temporarily unreachable.
+                  Once connectivity returns, the daily alarm automatically revalidates the key.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>Can I strip out the SEO &amp; Link Inspector and build my own extension?</summary>
+              <div class="faq-body">
+                <p>
+                  Yes. The included SEO &amp; Link Inspector is a working, store-ready product so
+                  you can test Popup, Side Panel, Context Menus, Scan History, and Pro gating on day
+                  one. Replace <code>seo-audit.ts</code> with your own domain logic while keeping the
+                  licensing, storage, setup CLI, and CWS packaging pipeline intact.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>How is the starter kit delivered after checkout?</summary>
+              <div class="faq-body">
+                <p>
+                  Immediately after checkout on Polar.sh, you receive an automatic download of the
+                  complete release archive plus instant access to the private GitHub repository.
+                </p>
+              </div>
+            </details>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>PolarExt Starter Kit · Built for Manifest V3 &amp; Polar.sh</p>
+        <p>
+          <a href="./privacy.html">Privacy Policy</a> ·
+          <a href="#pricing">Get the Kit</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="./main.js"></script>
+  </body>
+</html>

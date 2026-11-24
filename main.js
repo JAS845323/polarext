@@ -1,6 +1,6 @@
 // Replace with your live Polar.sh Checkout link(s) after creating products in Polar.
-const POLAR_CHECKOUT_URL = 'https://polar.sh';
-const POLAR_STANDARD_URL = '';
+const POLAR_CHECKOUT_URL = 'https://buy.polar.sh/polar_cl_JOUtaxug7idO6T32vNYuAYgL67hf6MvtT37IR3iRD2N';
+const POLAR_STANDARD_URL = 'https://buy.polar.sh/polar_cl_pi57oDERpuWUxarZU1yR8bZvIvdNUXwage0353rOJAJ';
 
 document.querySelectorAll('[data-checkout-cta]').forEach((el) => {
   const tier = el.getAttribute('data-checkout-cta');

@@ -2,8 +2,8 @@
 
 **Lemon Squeezy is sunsetting. Monetize your Manifest V3 Chrome Extension in 15 minutes with Polar.sh license keys — zero backend, zero monthly server cost.**
 
-- **Live Landing Page & Interactive In-Browser Simulator:** https://<YOUR_GITHUB_USERNAME>.github.io/polarext/
-- **Privacy Policy (Chrome Web Store Ready):** https://<YOUR_GITHUB_USERNAME>.github.io/polarext/privacy.html
+- **Live Landing Page & Interactive In-Browser Simulator:** https://JAS845323.github.io/polarext/
+- **Privacy Policy (Chrome Web Store Ready):** https://JAS845323.github.io/polarext/privacy.html
 
 ## What's Inside the Kit?
 

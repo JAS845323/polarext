@@ -1,8 +1,8 @@
-# PolarExt — Zero-Backend Chrome & Firefox Extension + Polar.sh Starter Kit (v1.2)
+# PolarExt — Zero-Backend Chromium & Firefox MV3 + Polar.sh Starter Kit (v1.2)
 
-![PolarExt — Zero-Backend Chrome & Firefox Extension + Polar.sh Starter Kit](./og-card.png)
+![PolarExt — Zero-Backend Chromium & Firefox MV3 + Polar.sh Starter Kit](./og-card.png)
 
-**Lemon Squeezy is sunsetting. Monetize your Manifest V3 Chrome & Firefox Extension in 15 minutes with Polar.sh license keys — zero backend, zero monthly server cost.**
+**Lemon Squeezy is sunsetting. Wire Polar.sh license keys into your Manifest V3 Chromium (Chrome, Edge, Brave) & Firefox extension — zero backend, zero monthly server cost, 27 automated tests.**
 
 - **Live Landing Page & Interactive In-Browser Simulator:** https://jas845323.github.io/polarext/
 - **Privacy Policy (Chrome Web Store Ready):** https://jas845323.github.io/polarext/privacy.html

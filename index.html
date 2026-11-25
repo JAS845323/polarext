@@ -4,30 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
-    <title>PolarExt — Zero-Backend Chrome &amp; Firefox Extension + Polar.sh Starter Kit</title>
+    <title>PolarExt — Zero-Backend Chromium &amp; Firefox MV3 + Polar.sh Starter Kit</title>
     <meta
       name="description"
-      content="Lemon Squeezy is sunsetting. Monetize your Manifest V3 Chrome &amp; Firefox Extension in 15 minutes with Polar.sh license keys — zero backend, AI agent rules (AGENTS.md &amp; Cursor), daily trial quota, and live simulator."
+      content="Lemon Squeezy is sunsetting. Wire Polar.sh license keys into your Manifest V3 Chromium (Chrome, Edge, Brave) &amp; Firefox extension with zero backend, 72h offline grace, and 27 automated tests."
     />
     <link rel="canonical" href="https://jas845323.github.io/polarext/" />
     <link rel="icon" type="image/png" href="./favicon.png" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jas845323.github.io/polarext/" />
-    <meta property="og:title" content="PolarExt — Zero-Backend Chrome &amp; Firefox Extension + Polar.sh Starter Kit" />
+    <meta property="og:title" content="PolarExt — Zero-Backend Chromium &amp; Firefox MV3 + Polar.sh Starter Kit" />
     <meta
       property="og:description"
-      content="Ship a paid MV3 browser extension in 15 minutes with Polar.sh license keys, 72h offline grace, daily trial quota, Firefox build, and Cursor/Claude Code rules. $19 early bird."
+      content="Skip server plumbing after Lemon Squeezy's sunset. MV3 React 19 + Polar.sh public license API, 72h offline grace, daily trial quota, and Chromium + Firefox builds. $19 launch price."
     />
     <meta property="og:image" content="https://jas845323.github.io/polarext/og-card.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="PolarExt — Zero-Backend Chrome &amp; Firefox Extension + Polar.sh Kit" />
+    <meta name="twitter:title" content="PolarExt — Zero-Backend Chromium &amp; Firefox MV3 + Polar.sh Kit" />
     <meta
       name="twitter:description"
-      content="Zero backend, zero server bill. MV3 React 19 + Polar.sh license keys, 72h offline grace, Firefox MV3 build, and AGENTS.md / Cursor rules. Try the live in-browser demo."
+      content="Zero backend, zero server bill. MV3 React 19 + Polar.sh license keys, 72h offline grace, Chromium + Firefox MV3 builds, and 27 automated tests. Try the live in-browser demo."
     />
     <meta name="twitter:image" content="https://jas845323.github.io/polarext/og-card.png" />
 
@@ -55,32 +55,36 @@
     <main>
       <section class="hero">
         <div class="container">
-          <span class="eyebrow">v1.2 · Chrome + Firefox MV3 · React 19 · Polar.sh · Cursor &amp; Claude Code Ready</span>
+          <span class="eyebrow">v1.2 · Chrome, Edge, Brave &amp; Firefox MV3 · React 19 · Polar.sh · 27 Tests</span>
           <h1>
             Lemon Squeezy is sunsetting.<br />
-            Monetize your Chrome Extension in 15 minutes with Polar.sh.
+            Wire Polar.sh license keys into your MV3 extension — with zero backend.
           </h1>
           <p class="hero-sub">
-            Skip building auth servers, webhook databases, and VAT headaches. PolarExt ships a
-            complete MV3 SEO &amp; Link Inspector extension wired directly to Polar's zero-backend
-            Customer Portal license APIs, 72-hour offline grace cache, daily free-trial quota,
-            Firefox MV3 build, and pre-tuned <code>AGENTS.md</code> + Cursor rules.
+            Skip writing boilerplate license state machines, alarm revalidation, and Manifest V3
+            packaging scripts. PolarExt ships a working SEO &amp; Link Inspector extension wired to
+            Polar's public Customer Portal license API, 72-hour offline grace cache, UTC daily trial
+            quota, dual Chromium (Chrome/Edge/Brave) + Firefox builds, and 27 Vitest tests.
           </p>
           <div class="hero-actions">
-            <a href="#pricing" class="btn btn-primary" data-checkout-cta="early">
-              Get Early Bird Access — $19
+            <a
+              href="https://buy.polar.sh/polar_cl_JOUtaxug7idO6T32vNYuAYgL67hf6MvtT37IR3iRD2N"
+              class="btn btn-primary"
+              data-checkout-cta="early"
+            >
+              Get Launch Copy — $19
             </a>
             <a href="#simulator" class="btn btn-secondary">Try Interactive Simulator</a>
           </div>
           <p class="hero-meta">
-            One-time purchase · Instant GitHub Private Repo invite + clean source ZIP · Unlimited commercial rights
+            One-time purchase · Instant clean source ZIP download (219 KB) + GitHub repo · Commercial license
           </p>
 
           <ul class="trust-strip" aria-label="Key starter kit highlights">
             <li><strong>$0/mo</strong><span>Backend &amp; DB Cost</span></li>
-            <li><strong>Chrome + Firefox</strong><span>Dual MV3 Builds</span></li>
-            <li><strong>AGENTS.md + .mdc</strong><span>Cursor &amp; Claude Ready</span></li>
-            <li><strong>25+ Tests</strong><span>Strict TS + Vitest</span></li>
+            <li><strong>Chrome / Edge / Firefox</strong><span>Dual MV3 Builds</span></li>
+            <li><strong>27 / 27 Tests</strong><span>Strict TS + Vitest</span></li>
+            <li><strong>99 KB ZIP</strong><span>Validated CWS Bundle</span></li>
             <li><strong>72h Grace</strong><span>Offline License Cache</span></li>
           </ul>
         </div>
@@ -328,7 +332,7 @@
                 SEO &amp; Link Auditor
               </button>
               <button type="button" id="feat-tab-surfaces" role="tab" class="preview-tab" aria-selected="false">
-                Chrome + Firefox MV3
+                Chrome, Edge &amp; Firefox MV3
               </button>
               <button type="button" id="feat-tab-dx" role="tab" class="preview-tab" aria-selected="false">
                 AI Rules &amp; Release Pipeline
@@ -385,12 +389,13 @@
               <div role="tabpanel" aria-labelledby="feat-tab-surfaces" hidden="until-found">
                 <div class="preview-panel">
                   <div class="preview-copy">
-                    <h3>Cross-Browser MV3: Popup, 4-Tab Side Panel &amp; Firefox Build</h3>
+                    <h3>Cross-Browser MV3: Chrome, Edge, Brave &amp; Firefox</h3>
                     <p>
                       Three complete React 19 surfaces styled with native <code>light-dark()</code>
                       tokens, System / Light / Dark appearance override, accessible
-                      <code>:user-invalid</code> form validation, and an automated Firefox MV3 build
-                      converting <code>side_panel</code> to <code>sidebar_action</code>.
+                      <code>:user-invalid</code> form validation, a Chromium MV3 build
+                      (<code>dist/</code> for Chrome, Edge, Brave, Arc), and an automated Firefox MV3
+                      build converting <code>side_panel</code> to <code>sidebar_action</code>.
                     </p>
                     <ul>
                       <li>Global keyboard shortcut <code>Alt+Shift+P</code> opens Side Panel</li>
@@ -491,7 +496,7 @@
                   <td>Manual manifest diffs</td>
                   <td>Chrome + Firefox</td>
                   <td>Usually Chrome-only</td>
-                  <td class="col-highlight"><strong>Chrome + Edge + Firefox</strong></td>
+                  <td class="col-highlight"><strong>Chrome, Edge, Brave &amp; Firefox</strong></td>
                 </tr>
                 <tr>
                   <th scope="row">AI Agent Rules</th>
@@ -517,23 +522,28 @@
         <div class="container">
           <h2>Simple, One-Time Pricing</h2>
           <p class="section-lead">
-            Pay once, build unlimited personal or commercial Chrome &amp; Firefox Extensions.
+            Pay once, build unlimited personal or commercial Chromium (Chrome, Edge, Brave) &amp;
+            Firefox Extensions.
           </p>
 
           <div class="pricing-grid">
             <article class="price-card featured">
-              <span class="pill">First 20 Buyers</span>
+              <span class="pill">Launch Batch · 20 / 20 Left</span>
               <h3>Early Bird Kit</h3>
               <p class="price">$19 <span class="price-note">USD one-time</span></p>
               <ul>
-                <li>Full Chrome + Firefox MV3, React 19, TypeScript &amp; SEO Auditor source</li>
+                <li>Full Chromium (Chrome/Edge/Brave) + Firefox MV3, React 19 &amp; TypeScript source</li>
                 <li>Zero-backend Polar.sh client (seats, metered usage, 72h grace &amp; daily trial quota)</li>
                 <li><code>AGENTS.md</code>, <code>CLAUDE.md</code> &amp; <code>.cursor/rules/</code> for AI-assisted shipping</li>
-                <li><code>npm run setup</code> wizard, <code>npm run dev</code> watcher &amp; 25+ Vitest tests</li>
+                <li><code>npm run setup</code> wizard, <code>npm run dev</code> watcher &amp; 27 Vitest tests</li>
                 <li>Pure-Node icon, <code>1280x800</code> screenshot, OG card generators &amp; CWS ZIP packager</li>
-                <li>Instant GitHub Private Repo invite + clean source ZIP download</li>
+                <li>Instant clean source ZIP download (219 KB) + GitHub Private Repo access</li>
               </ul>
-              <a href="https://polar.sh" class="btn btn-primary btn-full" data-checkout-cta="early">
+              <a
+                href="https://buy.polar.sh/polar_cl_JOUtaxug7idO6T32vNYuAYgL67hf6MvtT37IR3iRD2N"
+                class="btn btn-primary btn-full"
+                data-checkout-cta="early"
+              >
                 Buy Early Bird — $19
               </a>
             </article>
@@ -543,13 +553,17 @@
               <h3>Pro Starter Kit</h3>
               <p class="price">$29 <span class="price-note">USD one-time</span></p>
               <ul>
-                <li>Everything in Early Bird Kit (v1.2+ full source)</li>
-                <li>Future MV3, Firefox &amp; Polar.sh API compatibility updates</li>
+                <li>Everything in Early Bird Kit (v1.2 full source)</li>
+                <li>Future MV3, Chromium/Firefox &amp; Polar.sh API compatibility updates</li>
                 <li>Landing page + interactive simulator + OG card + Privacy Policy template</li>
                 <li>Unlimited commercial extensions for you or your studio</li>
                 <li>Priority GitHub Issues support</li>
               </ul>
-              <a href="https://polar.sh" class="btn btn-secondary btn-full" data-checkout-cta="standard">
+              <a
+                href="https://buy.polar.sh/polar_cl_pi57oDERpuWUxarZU1yR8bZvIvdNUXwage0353rOJAJ"
+                class="btn btn-secondary btn-full"
+                data-checkout-cta="standard"
+              >
                 Get Standard Kit — $29
               </a>
             </article>
@@ -573,6 +587,23 @@
                 <span class="collapse">Collapse all</span>
               </button>
             </div>
+
+            <details>
+              <summary>Can't client-side license validation be bypassed in browser extensions?</summary>
+              <div class="faq-body">
+                <p>
+                  <strong>Yes — let's be completely honest about this.</strong> Because extension
+                  JavaScript runs locally in the user's browser, a determined developer can always
+                  inspect DevTools, patch the unpacked bundle, or mock a network response to unlock
+                  local UI features. Zero-backend validation is an intentional engineering tradeoff
+                  for <strong>$5–$29 local utility extensions</strong> where your marginal cost per
+                  user is $0: you avoid paying monthly server bills while 99% of normal users happily
+                  buy a license. If your extension proxies paid server resources (like LLM API keys
+                  or proprietary data), you should validate the Polar license key on your backend
+                  before serving those API calls.
+                </p>
+              </div>
+            </details>
 
             <details>
               <summary>Do I need to run a backend server or database?</summary>

@@ -220,6 +220,125 @@ body {
   font-size: 0.88rem;
 }
 
+.trust-strip {
+  list-style: none;
+  margin: 28px auto 0;
+  padding: 0;
+  max-width: 920px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.trust-strip li {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-alt);
+  padding: 12px 10px;
+  text-align: center;
+}
+
+.trust-strip strong {
+  display: block;
+  font-size: 0.98rem;
+  color: var(--text);
+}
+
+.trust-strip span {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.swap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.swap-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  padding: 22px;
+}
+
+.swap-card h3 {
+  margin: 12px 0 8px;
+  font-size: 1.12rem;
+}
+
+.swap-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.step-num {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--brand);
+  color: var(--brand-text);
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.gallery-wrap {
+  margin-top: 44px;
+}
+
+.gallery-wrap h3 {
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.gallery-card {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.gallery-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid var(--border);
+}
+
+.gallery-card figcaption {
+  padding: 14px 16px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.gallery-card figcaption strong {
+  color: var(--text);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 .section {
   padding: 64px 0;
 }
@@ -547,7 +666,9 @@ body {
 }
 
 .table-wrap {
-  overflow-x: auto;
+  overflow: auto;
+  max-inline-size: 100%;
+  container-type: inline-size;
   border: 1px solid var(--border);
   border-radius: 12px;
   background: var(--surface);
@@ -555,8 +676,16 @@ body {
 
 table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   text-align: left;
+}
+
+thead {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1;
+  background: var(--bg-alt);
 }
 
 th,
@@ -566,13 +695,95 @@ td {
   vertical-align: top;
 }
 
+tbody tr:last-child th,
 tbody tr:last-child td {
   border-bottom: none;
 }
 
-th {
+thead th {
   font-size: 0.9rem;
   color: var(--muted);
+  background: var(--bg-alt);
+}
+
+tbody th {
+  position: sticky;
+  inset-inline-start: 0;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--surface);
+}
+
+.col-highlight {
+  background: var(--bg-alt);
+  color: var(--text);
+}
+
+thead th.col-highlight {
+  color: var(--brand);
+  font-weight: 800;
+}
+
+@container (width < 680px) {
+  .compare-table,
+  .compare-table thead,
+  .compare-table tbody,
+  .compare-table tr,
+  .compare-table th,
+  .compare-table td {
+    display: block;
+  }
+
+  .compare-table thead {
+    display: none;
+  }
+
+  .compare-table tr {
+    margin-block-end: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .compare-table tr:last-child {
+    margin-block-end: 0;
+  }
+
+  .compare-table tbody th {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 2;
+    background: var(--bg-alt);
+  }
+
+  .compare-table {
+    --label-2: "From Scratch";
+    --label-3: "WXT + ExtensionPay";
+    --label-4: "$149 SaaS Boilerplates";
+    --label-5: "PolarExt ($19)";
+  }
+
+  .compare-table td::before {
+    font-weight: 700;
+    color: var(--muted);
+  }
+
+  .compare-table td:nth-child(2)::before {
+    content: var(--label-2) ": ";
+  }
+
+  .compare-table td:nth-child(3)::before {
+    content: var(--label-3) ": ";
+  }
+
+  .compare-table td:nth-child(4)::before {
+    content: var(--label-4) ": ";
+  }
+
+  .compare-table td:nth-child(5)::before {
+    content: var(--label-5) ": ";
+    color: var(--brand);
+  }
 }
 
 .pricing-grid {

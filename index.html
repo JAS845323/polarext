@@ -4,11 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
-    <title>PolarExt — Zero-Backend Chrome Extension + Polar.sh Monetization Starter Kit</title>
+    <title>PolarExt — Zero-Backend Chrome &amp; Firefox Extension + Polar.sh Starter Kit</title>
     <meta
       name="description"
-      content="Lemon Squeezy is sunsetting. Monetize your Manifest V3 Chrome Extension in 15 minutes with Polar.sh license keys — zero backend, zero monthly server cost."
+      content="Lemon Squeezy is sunsetting. Monetize your Manifest V3 Chrome &amp; Firefox Extension in 15 minutes with Polar.sh license keys — zero backend, AI agent rules (AGENTS.md &amp; Cursor), daily trial quota, and live simulator."
     />
+    <link rel="canonical" href="https://jas845323.github.io/polarext/" />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jas845323.github.io/polarext/" />
+    <meta property="og:title" content="PolarExt — Zero-Backend Chrome &amp; Firefox Extension + Polar.sh Starter Kit" />
+    <meta
+      property="og:description"
+      content="Ship a paid MV3 browser extension in 15 minutes with Polar.sh license keys, 72h offline grace, daily trial quota, Firefox build, and Cursor/Claude Code rules. $19 early bird."
+    />
+    <meta property="og:image" content="https://jas845323.github.io/polarext/og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PolarExt — Zero-Backend Chrome &amp; Firefox Extension + Polar.sh Kit" />
+    <meta
+      name="twitter:description"
+      content="Zero backend, zero server bill. MV3 React 19 + Polar.sh license keys, 72h offline grace, Firefox MV3 build, and AGENTS.md / Cursor rules. Try the live in-browser demo."
+    />
+    <meta name="twitter:image" content="https://jas845323.github.io/polarext/og-card.png" />
+
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -20,8 +42,9 @@
         </a>
         <nav class="nav-links" aria-label="Primary navigation">
           <a href="#simulator">Live Demo</a>
+          <a href="#swap">5-Min Swap</a>
           <a href="#features">Architecture</a>
-          <a href="#compare">Why Polar</a>
+          <a href="#compare">Compare</a>
           <a href="#pricing">Pricing</a>
           <a href="#faq-heading">FAQ</a>
           <a href="./privacy.html">Privacy</a>
@@ -32,7 +55,7 @@
     <main>
       <section class="hero">
         <div class="container">
-          <span class="eyebrow">Manifest V3 + React 19 + TypeScript + Polar.sh</span>
+          <span class="eyebrow">v1.2 · Chrome + Firefox MV3 · React 19 · Polar.sh · Cursor &amp; Claude Code Ready</span>
           <h1>
             Lemon Squeezy is sunsetting.<br />
             Monetize your Chrome Extension in 15 minutes with Polar.sh.
@@ -40,8 +63,8 @@
           <p class="hero-sub">
             Skip building auth servers, webhook databases, and VAT headaches. PolarExt ships a
             complete MV3 SEO &amp; Link Inspector extension wired directly to Polar's zero-backend
-            Customer Portal license APIs, 72-hour offline grace cache, turnkey rebranding CLI, and
-            Chrome Web Store asset + ZIP pipeline.
+            Customer Portal license APIs, 72-hour offline grace cache, daily free-trial quota,
+            Firefox MV3 build, and pre-tuned <code>AGENTS.md</code> + Cursor rules.
           </p>
           <div class="hero-actions">
             <a href="#pricing" class="btn btn-primary" data-checkout-cta="early">
@@ -50,8 +73,16 @@
             <a href="#simulator" class="btn btn-secondary">Try Interactive Simulator</a>
           </div>
           <p class="hero-meta">
-            One-time purchase · Instant GitHub Private Repo invite + release ZIP · Commercial rights included
+            One-time purchase · Instant GitHub Private Repo invite + clean source ZIP · Unlimited commercial rights
           </p>
+
+          <ul class="trust-strip" aria-label="Key starter kit highlights">
+            <li><strong>$0/mo</strong><span>Backend &amp; DB Cost</span></li>
+            <li><strong>Chrome + Firefox</strong><span>Dual MV3 Builds</span></li>
+            <li><strong>AGENTS.md + .mdc</strong><span>Cursor &amp; Claude Ready</span></li>
+            <li><strong>25+ Tests</strong><span>Strict TS + Vitest</span></li>
+            <li><strong>72h Grace</strong><span>Offline License Cache</span></li>
+          </ul>
         </div>
       </section>
 
@@ -144,8 +175,8 @@
                     <div id="sim-pro-locked" class="sim-gate">
                       <strong>Unlock SEO Fix Checklist &amp; CSV Export</strong>
                       <p class="sim-muted">
-                        Free users see basic link counts. Pro unlocks prioritized fixes, page
-                        highlighting, and CSV / JSON / Markdown export.
+                        Free users get basic inspection + 5 free daily Markdown copies. Pro unlocks
+                        prioritized fixes, page highlighting, and unlimited CSV / JSON / Markdown export.
                       </p>
                       <button type="button" class="btn btn-sm btn-primary" id="sim-goto-license-btn">
                         Enter License Key
@@ -204,26 +235,103 @@
         </div>
       </section>
 
-      <section id="features" class="section">
+      <section id="swap" class="section">
+        <div class="container">
+          <h2>Swap In Your Own Extension Idea in 5 Minutes</h2>
+          <p class="section-lead">
+            Ship the bundled SEO &amp; Link Inspector as-is, or point Cursor / Claude Code at
+            <code>AGENTS.md</code> and swap in your own AI summarizer, SaaS companion, or lead scraper.
+          </p>
+
+          <div class="swap-grid">
+            <article class="swap-card">
+              <span class="step-num">1</span>
+              <h3>Rebrand With One Command</h3>
+              <p>
+                Run <code>npm run setup</code> to update your extension name, Polar Organization ID,
+                checkout URL, support email, and Chrome Web Store submission doc automatically.
+              </p>
+            </article>
+            <article class="swap-card">
+              <span class="step-num">2</span>
+              <h3>Swap Domain Logic Only</h3>
+              <p>
+                Replace <code>src/lib/seo-audit.ts</code> and wrap any paid widget inside
+                <code>&lt;ProGate&gt;</code> or <code>consumeDailyTrialAction()</code>. Polar
+                licensing, alarms, and storage stay untouched.
+              </p>
+            </article>
+            <article class="swap-card">
+              <span class="step-num">3</span>
+              <h3>Verify &amp; Ship Both Browsers</h3>
+              <p>
+                Run <code>npm run verify</code> to build Chrome (<code>dist/</code>) + Firefox MV3
+                (<code>dist-firefox/</code>), generate icons &amp; store PNGs, pass 25+ tests, and zip
+                your upload bundle.
+              </p>
+            </article>
+          </div>
+
+          <div class="gallery-wrap">
+            <h3>Included Extension Surfaces &amp; Auto-Generated Store Assets</h3>
+            <p class="section-lead">
+              Pure Node.js asset scripts generate Chrome Web Store screenshots (<code>1280x800</code>),
+              promo tiles (<code>440x280</code>), and Open Graph social cards (<code>1200x630</code>)
+              with zero headless browser dependencies.
+            </p>
+            <div class="gallery-grid">
+              <figure class="gallery-card">
+                <img
+                  src="./assets/screenshot-1-sidepanel-1280x800.png"
+                  alt="PolarExt Side Panel Inspector showing SEO score 86 out of 100, unique and external link counts, and metadata checks"
+                  width="1280"
+                  height="800"
+                  loading="lazy"
+                />
+                <figcaption>
+                  <strong>Inspector Surface:</strong> Live Side Panel with SEO health score, meta
+                  checks, and instant link filtering.
+                </figcaption>
+              </figure>
+              <figure class="gallery-card">
+                <img
+                  src="./assets/screenshot-2-pro-audit-1280x800.png"
+                  alt="PolarExt Pro Audit view showing CSV JSON Markdown exports, security fix checklist, and domain breakdown bars"
+                  width="1280"
+                  height="800"
+                  loading="lazy"
+                />
+                <figcaption>
+                  <strong>Pro Audit &amp; Exports:</strong> Prioritized fix checklist, domain
+                  breakdown, and CSV / JSON / Markdown export behind <code>&lt;ProGate&gt;</code>.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="section section-alt">
         <div class="container">
           <h2>Inside the Starter Kit</h2>
           <p class="section-lead">
-            Every surface and script a real paid Chrome Extension needs — pre-tested and wired end-to-end.
+            Every surface, AI coding rule, and release script a real paid browser extension needs —
+            pre-tested and wired end-to-end.
           </p>
 
           <div class="tabs-shell">
             <div class="preview-tabs" role="tablist" aria-label="Starter kit modules">
               <button type="button" id="feat-tab-license" role="tab" class="preview-tab" aria-selected="true">
-                Polar License Engine
+                Polar License &amp; Trial Quota
               </button>
               <button type="button" id="feat-tab-seo" role="tab" class="preview-tab" aria-selected="false">
                 SEO &amp; Link Auditor
               </button>
               <button type="button" id="feat-tab-surfaces" role="tab" class="preview-tab" aria-selected="false">
-                Popup, Panel &amp; Options
+                Chrome + Firefox MV3
               </button>
               <button type="button" id="feat-tab-dx" role="tab" class="preview-tab" aria-selected="false">
-                Setup CLI &amp; Store Assets
+                AI Rules &amp; Release Pipeline
               </button>
             </div>
 
@@ -231,16 +339,16 @@
               <div role="tabpanel" aria-labelledby="feat-tab-license" tabindex="0">
                 <div class="preview-panel">
                   <div class="preview-copy">
-                    <h3>Zero-Backend Polar.sh Customer Portal Client</h3>
+                    <h3>Zero-Backend Polar.sh Client + Daily Free-Trial Quota</h3>
                     <p>
                       Calls Polar's public <code>/v1/customer-portal/license-keys/activate</code>,
                       <code>/validate</code>, and <code>/deactivate</code> endpoints directly from the
                       extension — no secret API keys leaked, seat limits &amp; metered usage built in,
-                      and a 72-hour offline grace window.
+                      72-hour offline grace, plus a UTC-resetting daily free quota engine.
                     </p>
                     <ul>
                       <li>Supports Production &amp; Sandbox Polar APIs via <code>.env</code></li>
-                      <li>Metered usage support via <code>consumeLicenseUsage()</code></li>
+                      <li>Freemium daily limit via <code>consumeDailyTrialAction()</code> (Pro bypass)</li>
                       <li>Built-in demo keys (<code>POLAR-DEMO-PRO-2026</code>) for instant QA</li>
                     </ul>
                   </div>
@@ -277,15 +385,16 @@
               <div role="tabpanel" aria-labelledby="feat-tab-surfaces" hidden="until-found">
                 <div class="preview-panel">
                   <div class="preview-copy">
-                    <h3>Popup, 4-Tab Side Panel &amp; Synced Options</h3>
+                    <h3>Cross-Browser MV3: Popup, 4-Tab Side Panel &amp; Firefox Build</h3>
                     <p>
                       Three complete React 19 surfaces styled with native <code>light-dark()</code>
-                      tokens, a 3-state appearance selector (System / Light / Dark), and accessible
-                      <code>:user-invalid</code> form validation — zero inline scripts, zero CSP errors.
+                      tokens, System / Light / Dark appearance override, accessible
+                      <code>:user-invalid</code> form validation, and an automated Firefox MV3 build
+                      converting <code>side_panel</code> to <code>sidebar_action</code>.
                     </p>
                     <ul>
                       <li>Global keyboard shortcut <code>Alt+Shift+P</code> opens Side Panel</li>
-                      <li>Ephemeral-safe Service Worker with daily <code>chrome.alarms</code></li>
+                      <li><code>npm run build:firefox</code> emits ready-to-load <code>dist-firefox/</code></li>
                       <li><code>requestAnimationFrame</code> batched on-page highlighting + Shadow DOM toast</li>
                     </ul>
                   </div>
@@ -302,23 +411,25 @@
               <div role="tabpanel" aria-labelledby="feat-tab-dx" hidden="until-found">
                 <div class="preview-panel">
                   <div class="preview-copy">
-                    <h3>Turnkey Rebranding CLI, Watch Mode &amp; CWS Assets</h3>
+                    <h3>AI Coding-Agent Rules, Setup CLI &amp; CWS Asset Pipeline</h3>
                     <p>
-                      Go from clone to customized, store-ready release ZIP in one command. Includes
-                      pure Node.js PNG generators for extension icons AND Chrome Web Store screenshots
-                      plus a Lemon Squeezy migration guide.
+                      Pre-configured with <code>AGENTS.md</code>, <code>CLAUDE.md</code>, and
+                      <code>.cursor/rules/polarext-mv3.mdc</code> so AI coding assistants never break
+                      MV3 CSP rules, global Service Worker state, or Polar's public API contract.
                     </p>
                     <ul>
-                      <li><code>npm run setup</code> updates manifest, <code>.env</code>, CWS doc &amp; landing URL</li>
+                      <li><code>npm run setup</code> rebrands manifest, <code>.env</code>, CWS doc &amp; landing</li>
                       <li><code>npm run dev</code> watches files and rebuilds MV3 bundles on save</li>
-                      <li>Generates <code>1280x800</code> screenshots + <code>440x280</code> promo tile + CI workflow</li>
+                      <li>Pure-Node generators for icons, <code>1280x800</code> screenshots &amp; OG card</li>
                     </ul>
                   </div>
-                  <pre class="code-box"><code>$ npm run verify
-✓ 4 PNG icons (16, 32, 48, 128)
-✓ 3 Chrome Web Store assets (1280x800 x2, 440x280)
-✓ TypeScript strict check + Vitest suite passed
-✓ Packaged release/polarext-v1.0.0.zip</code></pre>
+                  <pre class="code-box"><code>polarext-starter-kit/
+├── AGENTS.md &amp; CLAUDE.md
+├── .cursor/rules/polarext-mv3.mdc
+├── src/lib/polar-license.ts   # Zero-backend Polar client
+├── src/lib/trial-quota.ts     # Daily free quota engine
+├── scripts/build-firefox.mjs  # Firefox MV3 adapter
+└── scripts/setup.mjs          # 1-command rebranding CLI</code></pre>
                 </div>
               </div>
             </div>
@@ -326,46 +437,75 @@
         </div>
       </section>
 
-      <section id="compare" class="section section-alt">
+      <section id="compare" class="section">
         <div class="container">
-          <h2>Before vs. After PolarExt</h2>
+          <h2>How PolarExt Compares to 2026 Alternatives</h2>
           <p class="section-lead">
-            Save 15–25 hours of Manifest V3 plumbing, CSP debugging, and store rejection loops.
+            Avoid $149 bloated SaaS boilerplates, recurring backend bills, or 5% extra middleman cuts.
           </p>
-          <div class="table-wrap">
-            <table>
+          <div tabindex="0" role="region" aria-labelledby="compare-table-caption" class="table-wrap">
+            <table class="compare-table">
+              <caption id="compare-table-caption" class="sr-only">
+                Comparison of Building From Scratch, WXT with ExtensionPay, $149 SaaS Boilerplates, and PolarExt Starter Kit
+              </caption>
               <thead>
                 <tr>
-                  <th>Area</th>
-                  <th>Building From Scratch</th>
-                  <th>With PolarExt Starter Kit</th>
+                  <th scope="col">Criteria</th>
+                  <th scope="col">From Scratch</th>
+                  <th scope="col">WXT + ExtensionPay</th>
+                  <th scope="col">$149 SaaS Boilerplates</th>
+                  <th scope="col" class="col-highlight">PolarExt ($19)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Billing &amp; Global VAT</td>
-                  <td>Build Stripe webhooks + database + EU/US tax compliance</td>
-                  <td>Polar.sh acts as Merchant of Record with public license key APIs</td>
+                  <th scope="row">Upfront + Server Cost</th>
+                  <td>15–25 hrs + $5–$20/mo</td>
+                  <td>Free + 5% extra rev cut</td>
+                  <td>$99–$199 + Supabase/Vercel</td>
+                  <td class="col-highlight"><strong>$19 once · $0/mo server</strong></td>
                 </tr>
                 <tr>
-                  <td>MV3 Service Worker State</td>
-                  <td>Global variables wiped every 30s of inactivity</td>
-                  <td>Zero global state; typed chrome.storage + daily chrome.alarms revalidation</td>
+                  <th scope="row">Billing &amp; Global VAT</th>
+                  <td>DIY Stripe + EU/US tax</td>
+                  <td>Stripe (limited countries)</td>
+                  <td>Custom webhooks + DB tables</td>
+                  <td class="col-highlight"><strong>Polar.sh MoR (Global + TW)</strong></td>
                 </tr>
                 <tr>
-                  <td>Side Panel Permissions</td>
-                  <td>Subtle activeTab failures from side panel buttons</td>
-                  <td>Correct tabs + host_permissions + Alt+Shift+P, Popup &amp; Context Menu triggers</td>
+                  <th scope="row">Offline Pro Grace</th>
+                  <td>Manual implementation</td>
+                  <td>Online check required</td>
+                  <td>Auth session expiry issues</td>
+                  <td class="col-highlight"><strong>72h grace + daily alarm</strong></td>
                 </tr>
                 <tr>
-                  <td>Dark Mode &amp; Accessibility</td>
-                  <td>Flash of white theme &amp; premature validation red borders</td>
-                  <td>color-scheme light dark + 3-state override + :user-invalid ARIA sync</td>
+                  <th scope="row">Daily Trial Quota</th>
+                  <td>Build from scratch</td>
+                  <td>Not included</td>
+                  <td>Server DB queries needed</td>
+                  <td class="col-highlight"><strong>Built-in local UTC engine</strong></td>
                 </tr>
                 <tr>
-                  <td>Chrome Web Store Prep</td>
-                  <td>Blank forms, missing screenshots, .env leaked into ZIP</td>
-                  <td>PNG icon + 1280x800 asset generators, validated ZIP &amp; CHROMEWEBSTORE.md</td>
+                  <th scope="row">Cross-Browser MV3</th>
+                  <td>Manual manifest diffs</td>
+                  <td>Chrome + Firefox</td>
+                  <td>Usually Chrome-only</td>
+                  <td class="col-highlight"><strong>Chrome + Edge + Firefox</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row">AI Agent Rules</th>
+                  <td>None</td>
+                  <td>None</td>
+                  <td>Rarely MV3-specific</td>
+                  <td class="col-highlight"><strong>AGENTS.md + CLAUDE + Cursor</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row">CWS Asset Pipeline</th>
+                  <td>Manual Figma &amp; ZIP</td>
+                  <td>Manual screenshots</td>
+                  <td>Manual store prep</td>
+                  <td class="col-highlight"><strong>Icons + 1280x800 + OG + ZIP</strong></td>
                 </tr>
               </tbody>
             </table>
@@ -373,11 +513,11 @@
         </div>
       </section>
 
-      <section id="pricing" class="section">
+      <section id="pricing" class="section section-alt">
         <div class="container">
           <h2>Simple, One-Time Pricing</h2>
           <p class="section-lead">
-            Pay once, build unlimited personal or commercial Chrome Extensions.
+            Pay once, build unlimited personal or commercial Chrome &amp; Firefox Extensions.
           </p>
 
           <div class="pricing-grid">
@@ -386,11 +526,12 @@
               <h3>Early Bird Kit</h3>
               <p class="price">$19 <span class="price-note">USD one-time</span></p>
               <ul>
-                <li>Full MV3 + React 19 + TypeScript + SEO Auditor source code</li>
-                <li>Zero-backend Polar.sh client (seats, metered usage &amp; 72h grace)</li>
-                <li><code>npm run setup</code> wizard, <code>npm run dev</code> watcher &amp; Vitest suite</li>
-                <li>PNG icon + 1280x800 CWS screenshot generators &amp; ZIP packager</li>
-                <li>Instant GitHub Private Repo invite + ZIP download</li>
+                <li>Full Chrome + Firefox MV3, React 19, TypeScript &amp; SEO Auditor source</li>
+                <li>Zero-backend Polar.sh client (seats, metered usage, 72h grace &amp; daily trial quota)</li>
+                <li><code>AGENTS.md</code>, <code>CLAUDE.md</code> &amp; <code>.cursor/rules/</code> for AI-assisted shipping</li>
+                <li><code>npm run setup</code> wizard, <code>npm run dev</code> watcher &amp; 25+ Vitest tests</li>
+                <li>Pure-Node icon, <code>1280x800</code> screenshot, OG card generators &amp; CWS ZIP packager</li>
+                <li>Instant GitHub Private Repo invite + clean source ZIP download</li>
               </ul>
               <a href="https://polar.sh" class="btn btn-primary btn-full" data-checkout-cta="early">
                 Buy Early Bird — $19
@@ -402,9 +543,9 @@
               <h3>Pro Starter Kit</h3>
               <p class="price">$29 <span class="price-note">USD one-time</span></p>
               <ul>
-                <li>Everything in Early Bird Kit</li>
-                <li>Future MV3 &amp; Polar.sh API compatibility updates</li>
-                <li>Landing page + live simulator + Privacy Policy static template</li>
+                <li>Everything in Early Bird Kit (v1.2+ full source)</li>
+                <li>Future MV3, Firefox &amp; Polar.sh API compatibility updates</li>
+                <li>Landing page + interactive simulator + OG card + Privacy Policy template</li>
                 <li>Unlimited commercial extensions for you or your studio</li>
                 <li>Priority GitHub Issues support</li>
               </ul>
@@ -416,7 +557,7 @@
         </div>
       </section>
 
-      <section class="section section-alt">
+      <section class="section">
         <div class="container narrow">
           <section class="accordion" id="faq-accordion" aria-labelledby="faq-heading">
             <div class="faq-header">
@@ -458,6 +599,19 @@
             </details>
 
             <details>
+              <summary>Does it work with Cursor, Claude Code, and Firefox?</summary>
+              <div class="faq-body">
+                <p>
+                  Yes. PolarExt ships with <code>AGENTS.md</code>, <code>CLAUDE.md</code>, and
+                  <code>.cursor/rules/polarext-mv3.mdc</code> so AI coding assistants follow MV3 CSP
+                  and Polar API rules automatically. Run <code>npm run build:firefox</code> anytime
+                  to emit a Firefox MV3 bundle with <code>sidebar_action</code> and
+                  <code>browser_specific_settings.gecko</code>.
+                </p>
+              </div>
+            </details>
+
+            <details>
               <summary>What happens when a customer loses internet connection?</summary>
               <div class="faq-body">
                 <p>
@@ -473,9 +627,9 @@
               <div class="faq-body">
                 <p>
                   Yes. The included SEO &amp; Link Inspector is a working, store-ready product so
-                  you can test Popup, Side Panel, Context Menus, Scan History, and Pro gating on day
-                  one. Replace <code>seo-audit.ts</code> with your own domain logic while keeping the
-                  licensing, storage, setup CLI, and CWS packaging pipeline intact.
+                  you can test Popup, Side Panel, Context Menus, Scan History, Daily Free Quota, and
+                  Pro gating on day one. Replace <code>seo-audit.ts</code> with your own domain logic
+                  while keeping the licensing, storage, setup CLI, and CWS packaging pipeline intact.
                 </p>
               </div>
             </details>
@@ -485,7 +639,7 @@
               <div class="faq-body">
                 <p>
                   Immediately after checkout on Polar.sh, you receive an automatic download of the
-                  complete release archive plus instant access to the private GitHub repository.
+                  complete clean source archive plus instant access to the private GitHub repository.
                 </p>
               </div>
             </details>
@@ -496,7 +650,7 @@
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p>PolarExt Starter Kit · Built for Manifest V3 &amp; Polar.sh</p>
+        <p>PolarExt Starter Kit v1.2 · Built for Chrome &amp; Firefox MV3 + Polar.sh</p>
         <p>
           <a href="./privacy.html">Privacy Policy</a> ·
           <a href="#pricing">Get the Kit</a>

@@ -3,97 +3,116 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="dark" />
     <title>Privacy Policy — PolarExt</title>
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <div class="noise-overlay" aria-hidden="true"></div>
+
     <header class="site-header">
-      <div class="container nav-inner">
+      <div class="arch-container nav-inner">
         <a href="./index.html" class="brand">
-          <span class="brand-mark" aria-hidden="true">✦</span>
-          <span>PolarExt</span>
+          <span class="brand-mark" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07" />
+            </svg>
+          </span>
+          <span class="brand-name">PolarExt</span>
+          <span class="brand-tag">v1.2</span>
         </a>
         <nav class="nav-links" aria-label="Primary navigation">
-          <a href="./index.html">Back to Home</a>
+          <a href="./index.html">Back to Product Page</a>
         </nav>
       </div>
     </header>
 
-    <main class="container narrow policy-doc">
-      <h1>Privacy Policy for PolarExt</h1>
-      <p class="section-lead">Last updated: 2026-11-24</p>
+    <main class="arch-shell">
+      <div class="arch-container narrow policy-doc">
+        <span class="eyebrow">LEGAL // CHROME WEB STORE PRIVACY DISCLOSURE</span>
+        <h1>Privacy Policy for PolarExt</h1>
+        <p class="section-lead">Last updated: 2026-11-26</p>
 
-      <h2>What Data We Collect</h2>
-      <ul>
-        <li>
-          <strong>License Key &amp; Device Identifier:</strong> When you choose to activate PolarExt
-          Pro, we store your entered Polar.sh license key, a locally generated random device ID, and
-          activation metadata.
-        </li>
-        <li>
-          <strong>Extension Preferences:</strong> Your display preferences (appearance theme,
-          preferred export format, highlighter mode, and toast notifications).
-        </li>
-        <li>
-          <strong>Active Page SEO Metadata &amp; Links (Local Only):</strong> When you ask PolarExt
-          to inspect a tab, page title, meta description, canonical/heading counts, link URLs, and
-          anchor attributes are read locally to compute the audit inside the popup or side panel.
-        </li>
-      </ul>
+        <h2>What Data We Collect</h2>
+        <ul>
+          <li>
+            <strong>License Key &amp; Device Identifier:</strong> When you choose to activate
+            PolarExt Pro, we store your entered Polar.sh license key, a locally generated random
+            device ID, and activation metadata.
+          </li>
+          <li>
+            <strong>Extension Preferences:</strong> Your display preferences (appearance theme,
+            preferred export format, highlighter mode, and toast notifications).
+          </li>
+          <li>
+            <strong>Active Page SEO Metadata &amp; Links (Local Only):</strong> When you ask
+            PolarExt to inspect a tab, page title, meta description, canonical/heading counts, link
+            URLs, and anchor attributes are read locally to compute the audit inside the popup or
+            side panel.
+          </li>
+        </ul>
 
-      <h2>How Data Is Stored</h2>
-      <p>
-        License state, device ID, and the last 10 recent scan snapshots are stored locally in your
-        browser via <code>chrome.storage.local</code>. User preferences (including your selected
-        appearance theme and export format) are stored via <code>chrome.storage.sync</code> so they
-        sync across your signed-in Chrome browsers.
-      </p>
+        <h2>How Data Is Stored</h2>
+        <p>
+          License state, device ID, daily free-trial counters, and the last 10 recent scan snapshots
+          are stored locally in your browser via <code>chrome.storage.local</code>. User preferences
+          (including your selected appearance theme and export format) are stored via
+          <code>chrome.storage.sync</code> so they sync across your signed-in browsers.
+        </p>
 
-      <h2>How Data Is Used</h2>
-      <ul>
-        <li>To compute SEO scores, flag link security issues, and display audit reports locally.</li>
-        <li>To verify Pro license entitlement, device seats, and usage limits via Polar.sh.</li>
-        <li>To remember your theme, highlight, and export preferences.</li>
-      </ul>
+        <h2>How Data Is Used</h2>
+        <ul>
+          <li>To compute SEO scores, flag link security issues, and display audit reports locally.</li>
+          <li>To verify Pro license entitlement, device seats, and usage limits via Polar.sh.</li>
+          <li>To remember your theme, highlight, and export preferences.</li>
+        </ul>
 
-      <h2>Third-Party Services</h2>
-      <p>
-        PolarExt connects to <strong>Polar.sh</strong> (<code>https://api.polar.sh</code> and
-        <code>https://sandbox-api.polar.sh</code>) solely when activating, periodically
-        revalidating, or deactivating a Pro license key. PolarExt does not transmit webpage content,
-        SEO audit results, browsing history, or analytics to any server.
-      </p>
+        <h2>Third-Party Services</h2>
+        <p>
+          PolarExt connects to <strong>Polar.sh</strong> (<code>https://api.polar.sh</code> and
+          <code>https://sandbox-api.polar.sh</code>) solely when activating, periodically
+          revalidating, or deactivating a Pro license key. PolarExt does not transmit webpage
+          content, SEO audit results, browsing history, or analytics to any server.
+        </p>
 
-      <h2>Data Sharing</h2>
-      <p>
-        We do not sell, rent, or share user data with advertisers or data brokers. Only your license
-        key and anonymous device label are sent to Polar.sh to validate your license.
-      </p>
+        <h2>Data Sharing</h2>
+        <p>
+          We do not sell, rent, or share user data with advertisers or data brokers. Only your
+          license key and anonymous device label are sent to Polar.sh to validate your license.
+        </p>
 
-      <h2>Data Retention and Deletion</h2>
-      <p>
-        Data remains in your browser storage until you deactivate your license, click
-        <strong>Clear All Stored Data</strong> in the PolarExt Options page, or uninstall the
-        extension.
-      </p>
+        <h2>Data Retention and Deletion</h2>
+        <p>
+          Data remains in your browser storage until you deactivate your license, click
+          <strong>Clear All Stored Data</strong> in the PolarExt Options page, or uninstall the
+          extension.
+        </p>
 
-      <h2>Changes to This Policy</h2>
-      <p>
-        We will update the "Last updated" date at the top of this page if our data practices change.
-      </p>
+        <h2>Changes to This Policy</h2>
+        <p>
+          We will update the "Last updated" date at the top of this page if our data practices
+          change.
+        </p>
 
-      <h2>Contact</h2>
-      <p>
-        For privacy questions, open an issue on our public support repository or contact the
-        publisher email listed on our Chrome Web Store page.
-      </p>
+        <h2>Contact</h2>
+        <p>
+          For privacy questions, open an issue on our public support repository or contact the
+          publisher email listed on our Chrome Web Store page.
+        </p>
+      </div>
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-inner">
-        <p>PolarExt — SEO &amp; Link Inspector</p>
-        <p><a href="./index.html">Home</a></p>
+      <div class="arch-container footer-inner">
+        <p class="footer-brand"><code>POLAREXT // PRIVACY POLICY</code></p>
+        <p class="footer-links"><a href="./index.html">Home</a></p>
       </div>
     </footer>
   </body>

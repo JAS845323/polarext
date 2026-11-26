@@ -7,6 +7,87 @@ if (!Object.hasOwn(HTMLElement.prototype, 'popover')) {
   import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js').catch(() => {});
 }
 
+// ============================================================================
+// 0. RESPONSIVE SINGLE-TREE NAVBAR (Popover <-> Inline via ResizeObserver)
+// ============================================================================
+(function initResponsiveNavbar() {
+  const header = document.getElementById('site-header');
+  const inner = document.getElementById('header-inner');
+  const menu = document.getElementById('site-menu');
+  if (!header || !inner || !menu) return;
+
+  let lastCollapsedWidth = 0;
+
+  function isPopoverOpen(el) {
+    try {
+      return el.matches(':popover-open');
+    } catch {
+      return el.classList.contains(':popover-open');
+    }
+  }
+
+  function syncNavLayout() {
+    const isCurrentlyWide = header.classList.contains('is-wide');
+    const currentWidth = header.clientWidth;
+
+    if (!isCurrentlyWide && lastCollapsedWidth > 0 && currentWidth <= lastCollapsedWidth) {
+      return;
+    }
+
+    const wasOpen = isPopoverOpen(menu);
+
+    header.classList.add('is-measuring');
+    header.classList.add('is-wide');
+    menu.removeAttribute('popover');
+
+    const fitsInline = inner.scrollWidth <= inner.clientWidth + 1;
+
+    if (fitsInline) {
+      lastCollapsedWidth = 0;
+    } else {
+      header.classList.remove('is-wide');
+      menu.setAttribute('popover', 'auto');
+      lastCollapsedWidth = currentWidth;
+      if (wasOpen && typeof menu.showPopover === 'function') {
+        try {
+          menu.showPopover();
+        } catch {
+          // Ignore if polyfill still loading
+        }
+      }
+    }
+
+    window.requestAnimationFrame(() => {
+      header.classList.remove('is-measuring');
+    });
+  }
+
+  // Close mobile popover when selecting an in-page hash anchor
+  menu.addEventListener('click', (event) => {
+    const link = event.target?.closest?.('a[href^="#"]');
+    if (!link || header.classList.contains('is-wide')) return;
+    if (typeof menu.hidePopover === 'function') {
+      try {
+        menu.hidePopover();
+      } catch {
+        menu.classList.remove(':popover-open');
+      }
+    }
+  });
+
+  if (typeof ResizeObserver === 'function') {
+    const ro = new ResizeObserver(() => {
+      syncNavLayout();
+    });
+    ro.observe(header);
+    ro.observe(menu);
+  } else {
+    window.addEventListener('resize', syncNavLayout);
+  }
+
+  syncNavLayout();
+})();
+
 document.querySelectorAll('[data-checkout-cta]').forEach((el) => {
   const tier = el.getAttribute('data-checkout-cta');
   const href = tier === 'standard' && POLAR_STANDARD_URL ? POLAR_STANDARD_URL : POLAR_CHECKOUT_URL;

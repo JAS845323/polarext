@@ -31,6 +31,74 @@
     />
     <meta name="twitter:image" content="https://jas845323.github.io/polarext/og-card.png?v=2" />
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "SoftwareApplication",
+            "name": "PolarExt Starter Kit",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Chrome, Edge, Brave, Firefox",
+            "softwareVersion": "1.2.0",
+            "url": "https://jas845323.github.io/polarext/",
+            "image": "https://jas845323.github.io/polarext/og-card.png?v=2",
+            "description": "Zero-backend Manifest V3 Chromium and Firefox browser extension starter kit wired to Polar.sh Customer Portal license key APIs, 72-hour offline grace cache, UTC daily trial quota, and 29 automated Vitest tests.",
+            "author": {
+              "@type": "Person",
+              "name": "Jason Teng",
+              "url": "https://github.com/JAS845323"
+            },
+            "offers": {
+              "@type": "Offer",
+              "name": "Launch All-Inclusive Commercial License (First 20 Copies)",
+              "price": "19.00",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock",
+              "url": "https://buy.polar.sh/polar_cl_JOUtaxug7idO6T32vNYuAYgL67hf6MvtT37IR3iRD2N"
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Can't client-side license validation be bypassed in browser extensions?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Because extension JavaScript runs locally in the user's browser, a determined developer can inspect DevTools or patch an unpacked bundle. Zero-backend validation is an intentional tradeoff for $5-$29 local utility extensions with $0 marginal server cost; extensions proxying paid APIs should validate keys server-side."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do I need to run a backend server or database?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Polar.sh exposes public Customer Portal endpoints for activating, validating, and deactivating license keys using only your public Organization ID without exposing secret API tokens."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why Polar.sh instead of Lemon Squeezy or Stripe?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Lemon Squeezy is sunsetting transaction and license processing on March 31, 2027, while raw Stripe leaves global VAT compliance on you. Polar.sh acts as Merchant of Record, issues license keys natively, grants downloads and private GitHub access, and pays out globally."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does it work with Cursor, Claude Code, and Firefox?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. PolarExt includes AGENTS.md, CLAUDE.md, and .cursor/rules/polarext-mv3.mdc for AI coding assistants, plus npm run build:firefox to emit a Firefox MV3 bundle with sidebar_action and browser_specific_settings.gecko."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -792,73 +860,157 @@
         </div>
       </section>
 
-      <!-- PRICING -->
+      <!-- PRICING (ALL-INCLUSIVE SINGLE-TIER COMMERCIAL LICENSE) -->
       <section id="pricing" class="arch-section">
         <span class="crosshair ch-tl" aria-hidden="true"></span>
         <span class="crosshair ch-tr" aria-hidden="true"></span>
         <div class="arch-container">
           <div class="section-head-split">
             <div>
-              <span class="eyebrow">05 // COMMERCIAL LICENSING</span>
-              <h2>One-Time Purchase. Zero Recurring Royalties.</h2>
+              <span class="eyebrow">05 // ALL-INCLUSIVE COMMERCIAL LICENSE</span>
+              <h2>One Flat Price. Everything Included.</h2>
             </div>
             <p class="section-lead">
-              Ship unlimited personal or commercial Chromium (Chrome, Edge, Brave) and Firefox
-              extensions under one flat license.
+              No tier guesswork. One license covers the full Chromium &amp; Firefox source, landing
+              page, v1.x updates, and unlimited commercial extensions.
             </p>
           </div>
 
-          <div class="pricing-grid">
-            <article class="price-card featured">
-              <div class="price-card-top">
-                <span class="pill pill-accent">LAUNCH PRICE · FIRST 20 COPIES</span>
-                <h3>Early Bird Kit</h3>
-                <p class="price">$19 <span class="price-note">USD · one-time</span></p>
+          <div class="pricing-ledger">
+            <div class="pricing-offer">
+              <span class="pill pill-accent">LAUNCH PRICE · FIRST 20 COPIES</span>
+              <h3>PolarExt Complete Starter Kit</h3>
+              <div class="price-row">
+                <s class="price-strike" aria-label="Regular price 29 dollars">$29</s>
+                <span class="price">$19</span>
+                <span class="price-note">USD · one-time</span>
               </div>
-              <ul>
-                <li>Full Chromium (Chrome/Edge/Brave) + Firefox MV3, React 19 &amp; TypeScript source</li>
-                <li>Zero-backend Polar.sh client (<code>benefit_id</code> lock, metered usage, 72h grace &amp; trial quota)</li>
-                <li><code>AGENTS.md</code>, <code>CLAUDE.md</code> &amp; <code>.cursor/rules/</code> for AI-assisted shipping</li>
-                <li><code>npm run setup</code> CLI, <code>npm run dev</code> watcher &amp; 29 Vitest tests</li>
-                <li>Pure-Node icon, <code>1280×800</code> screenshot, OG card generators &amp; CWS ZIP packager</li>
-                <li>Instant 221 KB clean source ZIP download + private GitHub repository</li>
-              </ul>
-              <a
-                href="https://buy.polar.sh/polar_cl_JOUtaxug7idO6T32vNYuAYgL67hf6MvtT37IR3iRD2N"
-                class="btn btn-primary btn-full"
-                data-checkout-cta="early"
-              >
-                <span>Buy Early Bird — $19</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-              </a>
-            </article>
+              <p class="offer-copy">
+                Reverts to $29 after the first 20 launch copies. Pay once via Polar.sh (global VAT
+                handled as Merchant of Record) and ship unlimited personal or client extensions.
+              </p>
 
-            <article class="price-card">
-              <div class="price-card-top">
-                <span class="pill">STANDARD COMMERCIAL LICENSE</span>
-                <h3>Pro Starter Kit</h3>
-                <p class="price">$29 <span class="price-note">USD · one-time</span></p>
+              <div class="offer-actions">
+                <a
+                  href="https://buy.polar.sh/polar_cl_JOUtaxug7idO6T32vNYuAYgL67hf6MvtT37IR3iRD2N"
+                  class="btn btn-primary btn-full"
+                  data-checkout-cta="early"
+                >
+                  <span>Get Complete Kit — $19</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </a>
+                <a
+                  href="https://dev.to/jas845323/migrating-an-mv3-chrome-extension-from-lemon-squeezy-to-polarsh-zero-backend-api-mapping--917"
+                  class="btn btn-secondary btn-full"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Read Full Migration Guide on dev.to</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17L17 7M7 7h10v10" />
+                  </svg>
+                </a>
               </div>
-              <ul>
-                <li>Everything in Early Bird Kit (v1.2 hardened source)</li>
-                <li>Future MV3, Chromium/Firefox &amp; Polar.sh API compatibility updates</li>
-                <li>Precision landing page + interactive simulator + OG card + Privacy Policy template</li>
-                <li>Unlimited commercial extensions for solo founders or studios</li>
-                <li>Priority GitHub Issues engineering support</li>
+
+              <p class="offer-footnote">
+                Instant 221 KB clean source ZIP + private GitHub repository · Includes all v1.x updates
+              </p>
+            </div>
+
+            <div class="pricing-manifest" aria-label="Included starter kit deliverables">
+              <div class="manifest-head">
+                <code>INCLUDED_DELIVERABLES // v1.2.0</code>
+                <span class="mono-note">72 source files</span>
+              </div>
+              <ul class="manifest-list">
+                <li>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                  <span><strong>Chromium + Firefox MV3 Source:</strong> Chrome, Edge, Brave, Arc (<code>dist/</code>) + automated Gecko transform (<code>dist-firefox/</code>)</span>
+                </li>
+                <li>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                  <span><strong>Hardened Polar.sh License Engine:</strong> <code>activate</code> / <code>validate</code> / <code>deactivate</code>, optional <code>benefit_id</code> tier lock, metered usage &amp; 72h clock-skew-guarded grace</span>
+                </li>
+                <li>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                  <span><strong>Working SEO &amp; Link Inspector + Trial Quota:</strong> 4-tab Side Panel, Popup, Options, UTC daily free-trial engine &amp; CSV/JSON/MD export</span>
+                </li>
+                <li>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                  <span><strong>AI Coding-Agent Rules:</strong> <code>AGENTS.md</code>, <code>CLAUDE.md</code> &amp; <code>.cursor/rules/polarext-mv3.mdc</code> tuned for MV3 CSP safety</span>
+                </li>
+                <li>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                  <span><strong>CLI, Store Pipeline &amp; Landing Page:</strong> <code>npm run setup</code>, <code>npm run verify</code> (29 Vitest tests), pure-Node PNG/ZIP generators, privacy policy &amp; this storefront</span>
+                </li>
+                <li>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                  <span><strong>v1.x Compatibility Updates &amp; Commercial Rights:</strong> Unlimited personal or studio extensions with GitHub Issues support</span>
+                </li>
               </ul>
-              <a
-                href="https://buy.polar.sh/polar_cl_pi57oDERpuWUxarZU1yR8bZvIvdNUXwage0353rOJAJ"
-                class="btn btn-secondary btn-full"
-                data-checkout-cta="standard"
-              >
-                <span>Get Standard Kit — $29</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-              </a>
-            </article>
+            </div>
+          </div>
+
+          <!-- Author Credibility & Live Sandbox Verification Strip -->
+          <div class="proof-strip" aria-label="Author and live Polar Sandbox verification proof">
+            <div class="proof-author">
+              <span class="eyebrow">MAINTAINED BY</span>
+              <div class="author-row">
+                <span class="author-monogram" aria-hidden="true">JT</span>
+                <div>
+                  <strong>Jason Teng</strong>
+                  <p>
+                    Independent developer building zero-backend Manifest V3 tooling. Questions on
+                    Lemon Squeezy migration or MV3 permissions? Reach out via GitHub or dev.to.
+                  </p>
+                </div>
+              </div>
+              <div class="author-links">
+                <a href="https://github.com/JAS845323" target="_blank" rel="noopener noreferrer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                  </svg>
+                  <span>github.com/JAS845323</span>
+                </a>
+                <a
+                  href="https://dev.to/jas845323/migrating-an-mv3-chrome-extension-from-lemon-squeezy-to-polarsh-zero-backend-api-mapping--917"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                  </svg>
+                  <span>dev.to Migration Deep-Dive</span>
+                </a>
+                <a href="https://x.com/jason22739" target="_blank" rel="noopener noreferrer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768m2.46-2.46L20 4" />
+                  </svg>
+                  <span>@jason22739</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="proof-telemetry">
+              <span class="eyebrow">LIVE SANDBOX VERIFICATION LOG</span>
+              <dl class="verify-log">
+                <div>
+                  <dt>100% DISCOUNT CHECKOUT</dt>
+                  <dd><code>$0 checkout → Status: Granted</code></dd>
+                </div>
+                <div>
+                  <dt>POLAR CUSTOMER PORTAL</dt>
+                  <dd><code>activate 200 · validate 200 · deactivate 204</code></dd>
+                </div>
+                <div>
+                  <dt>AUTOMATED SUITE</dt>
+                  <dd><code>7 files · 29 / 29 Vitest passing</code></dd>
+                </div>
+              </dl>
+            </div>
           </div>
         </div>
       </section>

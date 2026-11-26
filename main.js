@@ -88,10 +88,24 @@ if (!Object.hasOwn(HTMLElement.prototype, 'popover')) {
   syncNavLayout();
 })();
 
+// Forward inbound UTM / ref attribution cleanly to Polar checkout links (zero cookies)
+const inboundParams = new URLSearchParams(window.location.search);
+const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'ref'];
+
 document.querySelectorAll('[data-checkout-cta]').forEach((el) => {
   const tier = el.getAttribute('data-checkout-cta');
-  const href = tier === 'standard' && POLAR_STANDARD_URL ? POLAR_STANDARD_URL : POLAR_CHECKOUT_URL;
-  el.setAttribute('href', href);
+  const baseHref =
+    tier === 'standard' && POLAR_STANDARD_URL ? POLAR_STANDARD_URL : POLAR_CHECKOUT_URL;
+  try {
+    const targetUrl = new URL(baseHref);
+    for (const key of utmKeys) {
+      const val = inboundParams.get(key);
+      if (val) targetUrl.searchParams.set(key, val);
+    }
+    el.setAttribute('href', targetUrl.toString());
+  } catch {
+    el.setAttribute('href', baseHref);
+  }
 });
 
 // ============================================================================

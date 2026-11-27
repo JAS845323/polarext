@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <title>Migrating a Chrome &amp; Firefox MV3 Extension from Lemon Squeezy to Polar.sh (Zero Backend Guide)</title>
+    <meta
+      name="description"
+      content="Exact Lemon Squeezy to Polar.sh License API endpoint mapping, Manifest V3 Service Worker gotchas, 72h offline grace + clock-skew guard, and $0 checkout migration before March 31, 2027."
+    />
+    <meta name="author" content="Jason Teng" />
+    <link
+      rel="canonical"
+      href="https://jas845323.github.io/polarext/lemon-squeezy-to-polar-migration.html"
+    />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+
+    <!-- OpenGraph / X Card -->
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://jas845323.github.io/polarext/lemon-squeezy-to-polar-migration.html"
+    />
+    <meta
+      property="og:title"
+      content="Migrating an MV3 Chrome/Firefox Extension from Lemon Squeezy to Polar.sh"
+    />
+    <meta
+      property="og:description"
+      content="Zero-backend License API mapping, rate-limit safe chrome.alarms, benefit_id tier locks, and verified $0 checkout key re-issuance."
+    />
+    <meta
+      property="og:image"
+      content="https://jas845323.github.io/polarext/og-card.png?v=3"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Lemon Squeezy → Polar.sh Migration Guide for MV3 Extensions"
+    />
+    <meta
+      name="twitter:description"
+      content="Exact API endpoint/payload mapping, MV3 gotchas, and interactive LS → Polar diff console."
+    />
+    <meta
+      name="twitter:image"
+      content="https://jas845323.github.io/polarext/og-card.png?v=3"
+    />
+
+    <!-- Structured Data: TechArticle + FAQPage -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "TechArticle",
+            "headline": "Migrating a Chrome & Firefox MV3 Extension from Lemon Squeezy to Polar.sh (Zero Backend Guide)",
+            "description": "Exact Lemon Squeezy to Polar.sh License API endpoint mapping, Manifest V3 Service Worker gotchas, 72h offline grace + clock-skew guard, and $0 checkout migration.",
+            "datePublished": "2026-11-27",
+            "dateModified": "2026-11-27",
+            "author": {
+              "@type": "Person",
+              "name": "Jason Teng",
+              "url": "https://github.com/JAS845323"
+            },
+            "mainEntityOfPage": "https://jas845323.github.io/polarext/lemon-squeezy-to-polar-migration.html",
+            "image": "https://jas845323.github.io/polarext/og-card.png?v=3",
+            "proficiencyLevel": "Intermediate",
+            "dependencies": "Chrome Manifest V3, Firefox Manifest V3, Polar.sh Customer Portal API"
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "When does Lemon Squeezy stop validating license keys?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Lemon Squeezy closed new store sign-ups on November 16, 2026, launches its Stripe Managed Payments migration tooling on December 2, 2026 (without built-in license keys), and stops processing payments, renewals, and license key validation on March 31, 2027."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does Polar.sh require a backend server to validate browser extension license keys?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Polar.sh provides unauthenticated Customer Portal endpoints (/v1/customer-portal/license-keys/activate, /validate, and /deactivate) that only require your public organization_id UUID and optional benefit_id."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How can I migrate existing Lemon Squeezy buyers to Polar.sh without a backend?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Export your Lemon Squeezy customer and order CSVs, then generate single-use 100% off discount codes via POST /v1/discounts/ (basis_points: 10000, max_redemptions: 1) from a local script. On Polar checkout, a $0 total hides the card form and immediately grants a new Polar license key."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      .guide-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+        margin: 12px 0 28px;
+        font-family: var(--font-mono);
+        font-size: 0.76rem;
+        color: var(--text-muted);
+      }
+      .guide-callout {
+        margin: 22px 0;
+        padding: 16px 18px;
+        border: 1px solid rgba(0, 98, 255, 0.38);
+        border-radius: var(--radius-card);
+        background: rgba(0, 98, 255, 0.06);
+      }
+      .guide-callout p {
+        margin: 0;
+        color: var(--text-primary);
+        font-size: 0.9rem;
+      }
+      .guide-cta-box {
+        margin: 40px 0 12px;
+        padding: 24px;
+        border: 1px solid rgba(0, 98, 255, 0.45);
+        border-radius: var(--radius-console);
+        background: linear-gradient(180deg, rgba(0, 98, 255, 0.09) 0%, var(--bg-elevated) 55%);
+      }
+      .guide-cta-box h2 {
+        margin: 8px 0 8px;
+      }
+      .guide-cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+      .policy-doc pre.code-box {
+        margin: 14px 0 22px;
+      }
+      .policy-doc .table-wrap {
+        margin: 14px 0 24px;
+      }
+      .policy-doc h3 {
+        margin: 22px 0 8px;
+        font-size: 1rem;
+        color: var(--text-primary);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="arch-container nav-inner">
+        <a href="./index.html" class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07" />
+            </svg>
+          </span>
+          <span class="brand-name">PolarExt</span>
+          <span class="brand-tag">v1.2</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="./index.html#swap">Interactive #swap Console</a>
+          <a href="./index.html#demo">Live Simulator</a>
+          <a href="./index.html#pricing">Starter Kit ($19)</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="arch-shell">
+      <article class="arch-container narrow policy-doc">
+        <span class="eyebrow">TECHNICAL MIGRATION GUIDE // LEMON SQUEEZY → POLAR.SH</span>
+        <h1>Migrating an MV3 Chrome &amp; Firefox Extension from Lemon Squeezy to Polar.sh (Zero Backend)</h1>
+        <div class="guide-meta">
+          <span>Updated: 2026-11-27</span>
+          <span>Author: Jason Teng</span>
+          <span>Verified live on sandbox-api.polar.sh</span>
+        </div>
+
+        <p>
+          Lemon Squeezy permanently closed new store sign-ups on <strong>November 16, 2026</strong>,
+          launches its Stripe Managed Payments migration tooling on <strong>December 2, 2026</strong>,
+          and will stop processing payments, renewals, checkout links, webhooks, and
+          <strong>license key validation on March 31, 2027</strong>.
+        </p>
+        <p>
+          Because Stripe Managed Payments does not include built-in software license key generation
+          or validation, Chrome and Firefox extension developers who relied on Lemon Squeezy's
+          License API need a Merchant of Record alternative that doesn't require maintaining a
+          backend server and database.
+        </p>
+
+        <div class="guide-callout">
+          <p>
+            <strong>Want to generate copy-pasteable code with your own Polar UUIDs?</strong> Open the
+            <a href="./index.html#swap" style="color: #93c5fd;">interactive LS → Polar Migration Console</a>
+            on our main page to plug in your <code>organization_id</code> and <code>benefit_id</code>
+            and inspect side-by-side diffs in real time.
+          </p>
+        </div>
+
+        <h2>1. Endpoint &amp; Parameter Mapping: Lemon Squeezy → Polar.sh</h2>
+        <p>
+          Polar.sh exposes <strong>unauthenticated Customer Portal license endpoints</strong> that
+          only require your public <code>organization_id</code> (UUID) — so you never embed a secret
+          API token inside your extension bundle.
+        </p>
+
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Endpoint mapping table">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Action</th>
+                <th scope="col">Lemon Squeezy (api.lemonsqueezy.com)</th>
+                <th scope="col">Polar.sh (api.polar.sh)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Activate</th>
+                <td><code>POST /v1/licenses/activate</code></td>
+                <td><code>POST /v1/customer-portal/license-keys/activate</code></td>
+              </tr>
+              <tr>
+                <th scope="row">Validate</th>
+                <td><code>POST /v1/licenses/validate</code></td>
+                <td><code>POST /v1/customer-portal/license-keys/validate</code></td>
+              </tr>
+              <tr>
+                <th scope="row">Deactivate</th>
+                <td><code>POST /v1/licenses/deactivate</code></td>
+                <td><code>POST /v1/customer-portal/license-keys/deactivate</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Payload mapping table">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Concept</th>
+                <th scope="col">Lemon Squeezy</th>
+                <th scope="col">Polar.sh Customer Portal API</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Content-Type</th>
+                <td><code>application/x-www-form-urlencoded</code></td>
+                <td><code>application/json</code></td>
+              </tr>
+              <tr>
+                <th scope="row">License key</th>
+                <td><code>license_key</code></td>
+                <td><code>key</code></td>
+              </tr>
+              <tr>
+                <th scope="row">Organization scope</th>
+                <td>Not required</td>
+                <td><code>organization_id</code> (required on all 3 endpoints)</td>
+              </tr>
+              <tr>
+                <th scope="row">Device label</th>
+                <td><code>instance_name</code></td>
+                <td><code>label</code> (required on <code>/activate</code>)</td>
+              </tr>
+              <tr>
+                <th scope="row">Activation ID</th>
+                <td><code>instance_id</code></td>
+                <td><code>activation_id</code> (required on <code>/deactivate</code>; needed on <code>/validate</code> only when activation limits are enabled)</td>
+              </tr>
+              <tr>
+                <th scope="row">Tier / Product lock</th>
+                <td>Checked in response metadata</td>
+                <td><code>benefit_id</code> (optional UUIDv4; strongly recommended if selling multiple tiers/extensions)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>2. Activate vs. Validate (TypeScript MV3 Pattern)</h2>
+        <p>
+          You only need to call <code>/activate</code> if your Polar license key benefit enforces a
+          device activation limit (e.g., max 3 devices). Otherwise you can call
+          <code>/validate</code> directly without an <code>activation_id</code>.
+        </p>
+
+        <pre class="code-box"><code>// 1. Activate a device slot (required when activation limits are enabled)
+const activateRes = await fetch(
+  'https://api.polar.sh/v1/customer-portal/license-keys/activate',
+  {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      key: licenseKey,
+      organization_id: POLAR_PUBLIC_ORG_ID,
+      benefit_id: EXPECTED_PRO_BENEFIT_ID, // prevents cross-product key reuse
+      label: `Chrome Extension – ${deviceId}`,
+    }),
+  },
+);
+const activation = await activateRes.json();
+
+// 2. Validate on startup / daily chrome.alarms schedule
+const validateRes = await fetch(
+  'https://api.polar.sh/v1/customer-portal/license-keys/validate',
+  {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      key: licenseKey,
+      organization_id: POLAR_PUBLIC_ORG_ID,
+      benefit_id: EXPECTED_PRO_BENEFIT_ID,
+      ...(activationId ? { activation_id: activationId } : {}),
+    }),
+  },
+);
+const data = await validateRes.json();</code></pre>
+
+        <p>Remember to declare Polar's API origins in your MV3 <code>manifest.json</code>:</p>
+        <pre class="code-box"><code>"host_permissions": [
+  "https://api.polar.sh/*",
+  "https://sandbox-api.polar.sh/*"
+]</code></pre>
+
+        <h2>3. Five MV3 + Polar Gotchas That Break in Production</h2>
+        <ol>
+          <li>
+            <strong>Per-minute IP rate limits (HTTP <code>429</code> with <code>retry-after: ~41s</code>):</strong>
+            Never validate on every popup open. Persist license state in
+            <code>chrome.storage.local</code> (Service Worker globals vanish after ~30 seconds),
+            revalidate daily via <code>chrome.alarms</code>, and keep Pro unlocked during transient
+            network / <code>429</code> / <code>5xx</code> failures inside a 72-hour offline grace
+            window.
+          </li>
+          <li>
+            <strong>Monotonic backwards-clock tamper guard:</strong>
+            A naive <code>Date.now() - lastValidatedAt &lt; 72h</code> check stays valid forever if
+            a user rolls their OS clock backward. Reject grace access whenever
+            <code>now + 60_000 &lt; lastValidatedAt</code>.
+          </li>
+          <li>
+            <strong>Check <code>status</code> vs. <code>expires_at</code> by billing model:</strong>
+            For subscriptions, check <code>data.status === 'granted'</code> (Polar flips it to
+            <code>revoked</code>/<code>disabled</code> on cancel or refund). For one-time keys with
+            fixed validity, check both <code>status === 'granted'</code> and <code>expires_at</code>.
+          </li>
+          <li>
+            <strong><code>activeTab</code> fails from Chrome Side Panel buttons:</strong>
+            Clicking a button inside Chrome's <code>sidePanel</code> does not reliably grant
+            <code>activeTab</code> to the underlying webpage. Use <code>tabs</code> + scoped
+            <code>host_permissions</code>. For Firefox MV3, strip <code>sidePanel</code>, map
+            <code>side_panel</code> → <code>sidebar_action</code>, use
+            <code>background.scripts</code>, and declare <code>browser_specific_settings.gecko</code>.
+          </li>
+          <li>
+            <strong>Migrating existing Lemon Squeezy buyers via $0 checkout:</strong>
+            Export your LS customer, order, and key CSVs early. Verified live on
+            <code>sandbox.polar.sh</code>: applying a 100% off discount drops checkout to
+            <code>$0</code>, hides the credit card form completely, and immediately issues a fresh
+            Polar key. For larger customer lists, run a local one-off script calling
+            <code>POST /v1/discounts/</code> (<code>basis_points: 10000</code>,
+            <code>max_redemptions: 1</code>, <code>ends_at</code>) using a local token with
+            <code>discounts:write</code> — never bundle that token in your extension.
+            <em>(Note: PayPal subscriptions on Lemon Squeezy cannot migrate automatically.)</em>
+          </li>
+        </ol>
+
+        <h2>4. Honest Security Tradeoff (Client-Side Bypass)</h2>
+        <p>
+          Any purely client-side license check inside a browser extension can be bypassed locally
+          with DevTools. Zero-backend Polar validation is an intentional engineering tradeoff for
+          <strong>$5–$29 local utility extensions</strong> where your marginal server cost per user
+          is $0. If your extension proxies paid LLM APIs or proprietary backend databases, validate
+          the Polar license key on your backend server before forwarding paid requests.
+        </p>
+
+        <section class="guide-cta-box" aria-label="PolarExt starter kit call to action">
+          <span class="eyebrow">SKIP THE PLUMBING // POLAREXT v1.2.0</span>
+          <h2>Test the Working Reference Live in Your Browser</h2>
+          <p>
+            If you'd rather not rebuild the hardened TypeScript Polar client, 72h clock-skew-guarded
+            offline grace cache, daily UTC free-trial quota, Chromium + Firefox MV3 builds, AI
+            coding-agent rules, and 29 Vitest tests from scratch, try our live in-browser simulator
+            or grab the complete commercial starter kit ($19 one-time launch price).
+          </p>
+          <div class="guide-cta-actions">
+            <a
+              href="https://buy.polar.sh/polar_cl_JOUtaxug7idO6T32vNYuAYgL67hf6MvtT37IR3iRD2N?utm_source=seo&amp;utm_medium=migration_guide&amp;utm_campaign=ls_sunset"
+              class="btn btn-primary"
+            >
+              Get PolarExt v1.2 — $19
+            </a>
+            <a href="./index.html#swap" class="btn btn-secondary">
+              Open Interactive #swap Console
+            </a>
+            <a href="./index.html#demo" class="btn btn-secondary">
+              Try In-Browser Simulator
+            </a>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="arch-container footer-inner">
+        <p class="footer-brand"><code>POLAREXT // MIGRATION GUIDE</code></p>
+        <p class="footer-links">
+          <a href="./index.html">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="./index.html#swap">Migration Console</a>
+          <span aria-hidden="true">/</span>
+          <a href="./privacy.html">Privacy Policy</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

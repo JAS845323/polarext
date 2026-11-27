@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jas845323.github.io/polarext/sitemap.xml
